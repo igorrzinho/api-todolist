@@ -10,6 +10,7 @@ import {
   createTableTodo,
   insertTask,
   deleteTask,
+  deleteAllTask,
   selectTask,
   allTasks,
 } from './controller/tarefas.js';
@@ -25,13 +26,19 @@ createTableTodo();
 app.get('/', (req, res) => {
   res.json({
     usuarios: {
-      'adicionar usuario': '/adduser/:email/:senha/:nomeUsuario',
+      'adicionar usuario': '/adduser',
+      body: {
+        email: 'string',
+        senha: 'password',
+        nomeUsuario: 'string',
+      },
       'alterar um usuario': '/putuser/:nomeUsuario/:senha/:id',
       'deletar um usuario': '/delete/:id',
       'mostra todos os usuarios': '/allusers',
     },
     tasks: {
-      'adiciona um nova task': '/addtask/:id/:task',
+      'adiciona um nova task': '/addtask/:id',
+      body: { task: 'ola mundo' },
       'seleciona as task pelo id do usuario': '/selecttask/:id',
       'deleta uma task pelo id': '/deletetask/:id',
       'mostra todas as tasks': '/alltasks',
@@ -40,21 +47,23 @@ app.get('/', (req, res) => {
 });
 
 //usuario----------------------------------------------------------------------------------------------------------------------------------------------------//
-app.get('/adduser/:email/:senha/:nomeUsuario', async function (req, res) {
-  let { email, senha, nomeUsuario } = req.params;
+app.post('/adduser', async function (req, res) {
+  let { email, senha, nomeUsuario } = req.body;
   insertUser(email, senha, nomeUsuario);
   res.json('usuario adicionado');
 });
 
-app.get('/putuser/:nomeUsuario/:senha/:id', async function (req, res) {
-  let { id, senha, nomeUsuario } = req.params;
+app.put('/putuser/:id', async function (req, res) {
+  let { id } = req.params;
+  let { senha, nomeUsuario } = req.body;
   updatePessoa(nomeUsuario, senha, id);
   res.json('usuario alterado');
 });
 
-app.get('/delete/:id', async function (req, res) {
+app.delete('/delete/:id', async function (req, res) {
   let { id } = req.params;
   deleteUser(id);
+  deleteAllTask(id);
   res.json('usuario deletado');
 });
 
@@ -64,11 +73,11 @@ app.get('/allusers', async function (req, res) {
 });
 
 //task----------------------------------------------------------------------------------------------------------------------------------------------------//
-app.get('/addtask/:id/:task', async function (req, res) {
+app.post('/addtask/:id', async function (req, res) {
   let id = req.params.id;
-  let task = req.params.task;
+  let task = req.body.task;
   insertTask(task, id);
-  res.json('tarefa adicionada');
+  res.json('tarefa adicionada: ' + task);
 });
 
 app.get('/selecttask/:id', async function (req, res) {
@@ -77,7 +86,7 @@ app.get('/selecttask/:id', async function (req, res) {
   res.json(tasks);
 });
 
-app.get('/deletetask/:id', async function (req, res) {
+app.delete('/deletetask/:id', async function (req, res) {
   let id = req.params.id;
   deleteTask(id);
   res.json('tarefa deletada de id ' + id);

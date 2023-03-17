@@ -29,6 +29,14 @@ export async function selectTask(id) {
   });
 }
 
+export async function deleteAllTask(id) {
+  return openDb().then((db) => {
+    return db
+      .all('DELETE FROM todo WHERE id_usuarioFK=?', [id])
+      .then((res) => res);
+  });
+}
+
 export async function allTasks() {
   return openDb().then((db) => {
     return db.all('SELECT * FROM todo');
