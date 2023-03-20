@@ -1,6 +1,7 @@
 import {
   createTableUsuarios,
   insertUser,
+  lete,
   deleteUser,
   updatePessoa,
   allUsers,
@@ -14,15 +15,16 @@ import {
   selectTask,
   allTasks,
 } from './controller/tarefas.js';
-
 import express from 'express';
+import { randomUUID } from 'crypto';
 const app = express();
 const port = 3000;
 app.use(express.json());
 
-createTableUsuarios();
+//createTableUsuarios();
 createTableTodo();
-
+lete();
+/*
 app.get('/', (req, res) => {
   res.json({
     usuarios: {
@@ -97,6 +99,7 @@ app.get('/alltasks', async function (req, res) {
   res.json(tasks);
 });
 
+*/
 app.listen(port, () => {
   console.log(`rodando em: http://localhost:${port}`);
 });

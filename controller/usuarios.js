@@ -3,8 +3,14 @@ import { openDb } from '../configDB.js';
 export async function createTableUsuarios() {
   openDb().then((db) => {
     db.exec(
-      'CREATE TABLE IF NOT EXISTS usuarios( id integer PRIMARY KEY, email varchar(90), senha varchar(90),nomeUsuario varchar(90));'
+      'CREATE TABLE IF NOT EXISTS usuarios( id integer PRIMARY KEY, email varchar(90), senha varchar(90),nomeUsuario varchar(90), token varchar(50));'
     );
+  });
+}
+
+export async function lete() {
+  openDb().then((db) => {
+    db.exec('DROP TABLE usuarios');
   });
 }
 
