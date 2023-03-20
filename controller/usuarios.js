@@ -8,19 +8,14 @@ export async function createTableUsuarios() {
   });
 }
 
-export async function lete() {
-  openDb().then((db) => {
-    db.exec('DROP TABLE usuarios');
-  });
-}
-
 // essa função recebe o objeto usuario e vai criar um novo usuario no sql
-export async function insertUser(email, senha, nomeUsuario) {
+export async function insertUser(email, senha, nomeUsuario, token) {
   openDb().then((db) => {
     db.run('INSERT INTO usuarios (email, senha, nomeUsuario) VALUES (?,?,?)', [
       email,
       senha,
       nomeUsuario,
+      token,
     ]);
   });
 }

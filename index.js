@@ -1,7 +1,6 @@
 import {
   createTableUsuarios,
   insertUser,
-  lete,
   deleteUser,
   updatePessoa,
   allUsers,
@@ -21,10 +20,9 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 
-//createTableUsuarios();
+createTableUsuarios();
 createTableTodo();
-lete();
-/*
+
 app.get('/', (req, res) => {
   res.json({
     usuarios: {
@@ -51,7 +49,8 @@ app.get('/', (req, res) => {
 //usuario----------------------------------------------------------------------------------------------------------------------------------------------------//
 app.post('/adduser', async function (req, res) {
   let { email, senha, nomeUsuario } = req.body;
-  insertUser(email, senha, nomeUsuario);
+  var tolken = randomUUID();
+  insertUser(email, senha, nomeUsuario, tolken);
   res.json('usuario adicionado');
 });
 
@@ -99,7 +98,6 @@ app.get('/alltasks', async function (req, res) {
   res.json(tasks);
 });
 
-*/
 app.listen(port, () => {
   console.log(`rodando em: http://localhost:${port}`);
 });
