@@ -1,3 +1,6 @@
-# api-todolist
+# api todo list
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/express-simple-yvvmyl)
+essa api eu estou fazendo para teinar e usar um projeto mobile e web
+- essa api necessita de token em algumas rotas, para usar com postman utilize como abaixo
+
+![postman](https://raw.githubusercontent.com/igorrzinho/api-users/main/assets/postman-token.jpg)
