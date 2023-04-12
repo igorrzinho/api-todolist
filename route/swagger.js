@@ -1,5 +1,23 @@
 /**
  * @swagger
+ * /allusers:
+ *   get:
+ *     summary: Descrição do endpoint
+ *     responses:
+ *       200:
+ *         description: Descrição da resposta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Mensagem de resposta
+ *                   example: Olá, mundo!
+ */
+/**
+ * @swagger
  * /login:
  *   post:
  *     summary: login
@@ -38,6 +56,23 @@
  */
 /**
  * @swagger
+ * /delete/{id}:
+ *   delete:
+ *    description: Retorna um usuário específico
+ *    parameters:
+ *      - name: id
+ *        description: ID do usuário
+ *        in: path
+ *        required: true
+ *        schema:
+ *          type: integer
+ *    responses:
+ *      '200':
+ *        description: usuario deletado
+ */
+//components-----------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+ * @swagger
  * components:
  *   schemas:
  *     Login:
@@ -52,12 +87,7 @@
  *           description: senha do usuário
  *           example: 1234
  *     resLogin:
- *       type: object
- *       properties:
- *         message:
- *           type: string
- *           description: Mensagem de resposta
- *           example: token do usuario
+ *       type: string
  *     adduser:
  *       type: object
  *       properties:
@@ -78,6 +108,6 @@
  *       properties:
  *         message:
  *           type: string
- *           description: Mensagem de resposta
- *           example: token do usuario
+ *           description: tem que retornar "usuario adicionado"
+ *           example: usuario adicionado
  */
