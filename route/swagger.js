@@ -1,66 +1,83 @@
 /**
  * @swagger
- * tags:
- *   name: Exemplo
- *   description: Exemplos de endpoints da API
- */
-
-/**
- * @swagger
- * /api/exemplo:
+ * /login:
  *   post:
- *     summary: Envia uma saudação para o usuário
- *     tags: [Exemplo]
+ *     summary: login
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               nome:
- *                 type: string
- *                 description: Nome do usuário
- *                 example: João
+ *             $ref: '#/components/schemas/Login'
  *     responses:
  *       200:
- *         description: Saudação enviada com sucesso
+ *         description: Descrição da resposta
  *         content:
- *           text/plain:
+ *           application/json:
  *             schema:
- *               type: string
- *               example: Olá, João!
- *       400:
- *         description: Nome não fornecido
- *         content:
- *           text/plain:
- *             schema:
- *               type: string
- *               example: O campo 'nome' é obrigatório
+ *               $ref: '#/components/schemas/resLogin'
  */
 /**
  * @swagger
  * /adduser:
- *  post:
- *    description: adiciona um usuario
- *    body:
- *      - name: ola
- *        description: ID do usuário
- *        in: path
- *        required: true
- *        schema:
- *          type: integer
- *    responses:
- *      '200':
- *        description: Requisição bem sucedida
+ *   post:
+ *     summary: login
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/adduser'
+ *     responses:
+ *       200:
+ *         description: Descrição da resposta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/resAdduser'
  */
 /**
  * @swagger
- * /:
- *   get:
- *     summary: Exibe a mensagem "Olá, mundo!".
- *     description: Exibe a mensagem "Olá, mundo!".
- *     responses:
- *       200:
- *         description: A mensagem "Olá, mundo!" é exibida.
+ * components:
+ *   schemas:
+ *     Login:
+ *       type: object
+ *       properties:
+ *         nomeUsuario:
+ *           type: string
+ *           description: Nome do usuário
+ *           example: igorrr
+ *         senha:
+ *           type: string
+ *           description: senha do usuário
+ *           example: 1234
+ *     resLogin:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Mensagem de resposta
+ *           example: token do usuario
+ *     adduser:
+ *       type: object
+ *       properties:
+ *         nomeUsuario:
+ *           type: string
+ *           description: Nome do usuário
+ *           example: seu nickname
+ *         email:
+ *           type: string
+ *           description: email do usuário
+ *           example: "nomedousuario@email.com"
+ *         senha:
+ *           type: string
+ *           description: senha do usuário
+ *           example: 1234
+ *     resAdduser:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Mensagem de resposta
+ *           example: token do usuario
  */

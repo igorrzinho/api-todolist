@@ -5,7 +5,7 @@ import {
   allUsers,
   Login,
   Token,
-  tokenValid
+  tokenValid,
 } from '../controller/usuarios.js';
 
 import {
@@ -47,30 +47,24 @@ router.get('/', (req, res) => {
 async function Authentication(req, res, next) {
   const token = req.headers.authorization;
   if (!token) {
-    return res.status(401).json({ mensagem: "Token não encontrado" });
+    return res.status(401).json({ mensagem: 'Token não encontrado' });
   }
 
-  let resToken = await tokenValid(token)
+  let resToken = await tokenValid(token);
 
   // Aqui você pode verificar se o token é válido, por exemplo
 
   if (resToken.length < 1) {
-    return res.status(401).json({ mensagem: "Token não é valido" });
-
-
+    return res.status(401).json({ mensagem: 'Token não é valido' });
   } else {
     console.log('ola tudo');
-
   }
-
 
   // Se o token for inválido, você pode retornar um erro 401 (Não Autorizado)
 
   next();
 }
 //usuario----------------------------------------------------------------------------------------------------------------------------------------------------//
-
-     
 
 router.post('/adduser', async function (req, res) {
   let { email, senha, nomeUsuario } = req.body;
@@ -83,14 +77,13 @@ router.post('/login', async (req, res) => {
   const { nomeUsuario, senha } = req.body;
   let dados = await Login(nomeUsuario, senha);
   let token = await Token(nomeUsuario, senha);
-  let hasToken = auth(token)
-  //res.json(dados)
+  let hasToken = auth(token);
   if (hasToken == true) {
     console.log(hasToken);
     res.status(200).json(token[0].token);
   } else {
-    console.log('erro nao autorizado')
-    res.status(401).send('nao autorizado')
+    console.log('erro nao autorizado');
+    res.status(401).send('nao autorizado');
   }
 });
 
@@ -114,7 +107,7 @@ router.get('/allusers', async function (req, res) {
 });
 
 //task----------------------------------------------------------------------------------------------------------------------------------------------------//
-router.post('/addtask/:id',Authentication, async function (req, res) {
+router.post('/addtask/:id', Authentication, async function (req, res) {
   let id = req.params.id;
   let task = req.body.task;
   insertTask(task, id);

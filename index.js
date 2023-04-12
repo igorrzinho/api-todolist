@@ -1,7 +1,8 @@
 import express from 'express';
 import router from './route/router.js';
-import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
+import bodyParser from 'body-parser';
 import { createTableUsuarios } from './controller/usuarios.js';
 import { createTableTodo } from './controller/tarefas.js';
 const app = express();
@@ -12,22 +13,23 @@ createTableUsuarios();
 createTableTodo();
 
 const swaggerOptions = {
-  swaggerDefinition: {
+  definition: {
+    openapi: '3.0.0',
     info: {
       title: 'Minha API',
+      version: '1.0.0',
       description: 'Descrição da minha API',
-      contact: {
-        name: 'igor'
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
       },
-      servers: [`http://localhost:${port}`]
-    }
+    ],
   },
-  apis: ['./route/*.js']
+  apis: ['./route/*.js'],
 };
-
-const swaggerSpec = swaggerJSDoc(swaggerOptions);
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/', router);
 
