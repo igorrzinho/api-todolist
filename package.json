@@ -7,15 +7,13 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
     "crypto": "^1.0.1",
     "express": "^4.18.2",
     "nodemon": "^2.0.22",
     "sqlite": "^4.1.2",
     "sqlite3": "^5.1.4",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.2",
+    "yamljs": "^0.3.0"
   },
-  "type": "module",
-  "resolveJsonModule": true
+  "type": "module"
 }
