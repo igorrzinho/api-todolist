@@ -75,7 +75,7 @@ paths:
       tags:
         - user
       summary: Descrição do oi
-parameters:
+      parameters:
         - name: id
           in: path
           description: ID of pet that needs to be updated
