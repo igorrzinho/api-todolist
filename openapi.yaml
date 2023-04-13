@@ -87,13 +87,12 @@ paths:
           required: true
           schema:
             type: string
-      responses:
-        "200":
-          description: Descrição da resposta
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/RequestPutUser"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/RequestPutUser"
       responses:
         "200":
           description: Descrição da resposta
