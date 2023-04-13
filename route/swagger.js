@@ -20,7 +20,7 @@
  * @swagger
  * /login:
  *   post:
- *     summary: login
+ *     summary: faz login
  *     requestBody:
  *       required: true
  *       content:
@@ -39,7 +39,7 @@
  * @swagger
  * /adduser:
  *   post:
- *     summary: login
+ *     summary: adiciona um usuario
  *     requestBody:
  *       required: true
  *       content:
@@ -53,6 +53,32 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/resAdduser'
+ */
+/**
+ * @swagger
+ * /putuser/{id}:
+ *   put:
+ *     summary: altera um usuario
+ *     parameters:
+ *       - name: id
+ *         description: ID do usuário
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Putuser'
+ *     responses:
+ *       200:
+ *         description: Descrição da resposta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/resPutuser'
  */
 /**
  * @swagger
@@ -88,6 +114,7 @@
  *           example: 1234
  *     resLogin:
  *       type: string
+ *
  *     adduser:
  *       type: object
  *       properties:
@@ -110,4 +137,24 @@
  *           type: string
  *           description: tem que retornar "usuario adicionado"
  *           example: usuario adicionado
+ *
+ *     Putuser:
+ *       type: object
+ *       properties:
+ *         nomeUsuario:
+ *           type: string
+ *           description: novo nome do usuário
+ *           example: igorrr
+ *         senha:
+ *           type: string
+ *           description: nova senha do usuário
+ *           example: 1234
+ *     resPutuser:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: tem que retornar "usuario alterado"
+ *                   example: usuario alterado
+ *
  */

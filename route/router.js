@@ -70,7 +70,9 @@ router.post('/adduser', async function (req, res) {
   let { email, senha, nomeUsuario } = req.body;
   var tolken = randomUUID();
   insertUser(email, senha, nomeUsuario, tolken);
-  res.json('usuario adicionado');
+  res.json({
+    message: 'usuario adicionado',
+  });
 });
 
 router.post('/login', async (req, res) => {
