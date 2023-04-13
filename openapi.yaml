@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  title: api to do list
+  version: 1.0.0
+  description: Descrição da minha API
+servers:
+  - url: http://localhost:3000
+paths:
+  #login
+  /login:
+    post:
+      tags:
+        - user
+      summary: Descrição do endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestLogin"
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseLogin"
+  # adduser
+  /adduser:
+    post:
+      tags:
+        - user
+      summary: Descrição do endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestAddUser"
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAddUser"
+  # delete user
+  /delete/{id}:
+    delete:
+      tags:
+        - user
+      summary: Descrição do oi
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                type: string
+  # putuser
+  /putuser/{id}:
+    put:
+      tags:
+        - user
+      summary: Descrição do oi
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/RequestPutUser"
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponsePutUser"
+  # addtask
+  /addtask/{id}:
+    post:
+      tags:
+        - task
+      summary: Descrição do oi
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+                $ref: "#/components/schemas/RequestAddTask"
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponsePutUser"
+# get tasks
+  /selecttask/{id}:
+    get:
+      tags:
+        - task
+      summary: Descrição do oi
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                type: object
+  # delete task
+  /deletetask/{id}:
+    delete:
+      tags:
+        - task
+      summary: Descrição do oi
+      parameters:
+        - name: id
+          in: path
+          description: id da task
+          required: true
+          schema:
+            type: integer
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteTask"
+# components
+components:
+  schemas:
+    RequestBody:
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do usuário
+          example: João
+        idade:
+          type: integer
+          description: Idade do usuário
+          example: 30
+    ResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: "Olá, João!"
+          
+# login
+    RequestLogin:
+      type: object
+      properties:
+        nomeUsuario:
+          type: string
+          description: Nome do usuário
+          example: João
+        email:
+          type: string
+          description: Email do usuário
+          example: João@email.com
+        senha:
+          type: string
+          description: senha do usuário
+          example: 12345
+          
+    ResponseLogin:
+      type: string
+      
+# adduser
+    RequestAddUser:
+      type: object
+      properties:
+        nomeUsuario:
+          type: string
+          description: Nome do usuário
+          example: João
+        email:
+          type: string
+          description: Email do usuário
+          example: João@email.com
+        senha:
+          type: string
+          description: senha do usuário
+          example: 12345
+    ResponseAddUser:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: 'usuario adicionado'
+          
+# put user
+    RequestPutUser:
+      type: object
+      properties:
+        nomeUsuario:
+          type: string
+          description: Nome do usuário
+          example: João
+        senha:
+          type: string
+          description: senha do usuário
+          example: 12345
+    ResponsePutUser:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: 'usuario alterado'
+# add task
+    RequestAddTask:
+      type: object
+      properties:
+        task:
+          type: string
+          description: tarefa
+          example: ler um livro
+
+    ResponseAddTask:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: 'tarefa adicionada: tarefa'
+
+# delete task
+    ResponseDeleteTask:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem de resposta
+          example: 'tarefa deletada de id: id'
