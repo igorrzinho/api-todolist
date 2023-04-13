@@ -75,7 +75,7 @@ paths:
       tags:
         - user
       summary: Descrição do oi
-      parameters:
+parameters:
         - name: id
           in: path
           description: ID of pet that needs to be updated
@@ -87,12 +87,13 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: 
-              $ref: "#/components/schemas/RequestPutUser"
+      responses:
+        "200":
+          description: Descrição da resposta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestPutUser"
       responses:
         "200":
           description: Descrição da resposta
