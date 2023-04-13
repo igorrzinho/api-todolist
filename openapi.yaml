@@ -1,6 +1,11 @@
 openapi: 3.0.0
 info:
   title: api to do list
+  securityDefinitions:
+    api_key:
+      type: "apiKey"
+      name: "authorization"
+      in: "header"
   version: 1.0.0
   description: Descrição da minha API
 servers:
@@ -50,6 +55,8 @@ paths:
       tags:
         - user
       summary: Descrição do oi
+      security:
+          - jwt: []
       parameters:
         - name: id
           in: path
@@ -57,7 +64,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: authorization
+        - name: Authorization
           in: header
           required: true
           schema:
@@ -82,7 +89,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: authorization
+        - name: Authorization
           in: header
           required: true
           schema:
@@ -113,7 +120,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: authorization
+        - name: Authorization
           in: header
           required: true
           schema:
@@ -144,7 +151,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: authorization
+        - name: Authorization
           in: header
           required: true
           schema:
@@ -169,11 +176,13 @@ paths:
           required: true
           schema:
             type: integer
-        - name: authorization
+        - name: Authorization
           in: header
           required: true
           schema:
             type: string
+      security:
+          - jwt: []
       responses:
         "200":
           description: Descrição da resposta
@@ -291,3 +300,8 @@ components:
           type: string
           description: Mensagem de resposta
           example: 'tarefa deletada de id: id'
+securityDefinitions:
+  jwt:
+    type: apiKey
+    name: Authorization
+    in: header

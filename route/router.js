@@ -21,7 +21,7 @@ import { randomUUID } from 'crypto';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', Authentication, (req, res) => {
   res.json({
     usuarios: {
       'adicionar usuario': '/adduser',
@@ -45,10 +45,11 @@ router.get('/', (req, res) => {
 });
 
 async function Authentication(req, res, next) {
-  const authHeader = req.headers['authorization'];
+  //const authHeader = req.headers['authorization'];
   //const token = authHeader && authHeader.split(' ')[1];
   //console.log(token);
-  console.log(authHeader);
+  const token = req.headers.Authorization;
+  console.log(token);
   /*   const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ mensagem: 'Token não encontrado' });
