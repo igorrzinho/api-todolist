@@ -118,7 +118,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: Authorization
+        - name: token
           in: header
           required: true
           schema:
@@ -149,7 +149,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: Authorization
+        - name: token
           in: header
           required: true
           schema:
@@ -174,7 +174,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: Authorization
+        - name: token
           in: header
           required: true
           schema:
