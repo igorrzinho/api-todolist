@@ -55,8 +55,6 @@ paths:
       tags:
         - user
       summary: Descrição do oi
-      security:
-          - jwt: []
       parameters:
         - name: id
           in: path
@@ -64,7 +62,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: Authorization
+        - name: token
           in: header
           required: true
           schema:
@@ -89,7 +87,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: Authorization
+        - name: token
           in: header
           required: true
           schema:
@@ -300,8 +298,3 @@ components:
           type: string
           description: Mensagem de resposta
           example: 'tarefa deletada de id: id'
-  securitySchemes:
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header

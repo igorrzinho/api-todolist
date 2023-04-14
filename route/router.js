@@ -45,12 +45,8 @@ router.get('/', (req, res) => {
 });
 
 async function Authentication(req, res, next) {
-  //const authHeader = req.headers['authorization'];
-  //const token = authHeader && authHeader.split(' ')[1];
-  //console.log(token);
-  const token = req.headers.Authorization;
+  const token = req.headers['token'];
   console.log(token);
-  /*   const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ mensagem: 'Token não encontrado' });
   }
@@ -63,7 +59,7 @@ async function Authentication(req, res, next) {
     return res.status(401).json({ mensagem: 'Token não é valido' });
   } else {
     console.log('ola tudo');
-  } */
+  }
 
   // Se o token for inválido, você pode retornar um erro 401 (Não Autorizado)
 
