@@ -46,7 +46,6 @@ router.get('/', (req, res) => {
 
 async function Authentication(req, res, next) {
   const token = req.headers['token'];
-  console.log(token);
   if (!token) {
     return res.status(401).json({ mensagem: 'Token não encontrado' });
   }
