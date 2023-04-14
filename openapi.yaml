@@ -300,8 +300,8 @@ components:
           type: string
           description: Mensagem de resposta
           example: 'tarefa deletada de id: id'
-securityDefinitions:
-  jwt:
-    type: apiKey
-    name: Authorization
-    in: header
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header

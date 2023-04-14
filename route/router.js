@@ -21,7 +21,7 @@ import { randomUUID } from 'crypto';
 
 const router = Router();
 
-router.get('/', Authentication, (req, res) => {
+router.get('/', (req, res) => {
   res.json({
     usuarios: {
       'adicionar usuario': '/adduser',
