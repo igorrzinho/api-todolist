@@ -4,7 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import yaml from 'yamljs';
 import { createTableUsuarios } from './controller/usuarios.js';
 import { createTableTodo } from './controller/tarefas.js';
-import cors from 'cros';
+import cors from 'cors';
 const app = express();
 const port = 3000;
 app.use(express.json());
