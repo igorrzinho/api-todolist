@@ -13,7 +13,7 @@ const swaggerDocument = yaml.load('./openapi.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 createTableUsuarios();
 createTableTodo();
-
+dropTable();
 app.use('/', router);
 
 app.listen(port, () => {
