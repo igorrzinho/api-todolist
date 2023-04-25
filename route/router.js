@@ -56,8 +56,6 @@ async function Authentication(req, res, next) {
 
   if (resToken.length < 1) {
     return res.status(401).json({ mensagem: 'Token não é valido' });
-  } else {
-    console.log('ola tudo');
   }
 
   // Se o token for inválido, você pode retornar um erro 401 (Não Autorizado)
@@ -70,9 +68,8 @@ router.post('/adduser', async function (req, res) {
   let { email, senha, nomeUsuario } = req.body;
   var tolken = randomUUID();
   insertUser(email, senha, nomeUsuario, tolken);
-  res.json({
-    message: 'usuario adicionado',
-  });
+  let token = await Token(nomeUsuario, senha);
+  res.json(token);
 });
 
 router.post('/login', async (req, res) => {
@@ -81,10 +78,8 @@ router.post('/login', async (req, res) => {
   let token = await Token(nomeUsuario, senha);
   let hasToken = auth(token);
   if (hasToken == true) {
-    console.log(hasToken);
-    res.status(200).json(token[0].token);
+    res.status(200).json(token);
   } else {
-    console.log('erro nao autorizado');
     res.status(401).send('nao autorizado');
   }
 });

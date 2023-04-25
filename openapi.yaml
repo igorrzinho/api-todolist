@@ -228,7 +228,14 @@ components:
           example: 12345
           
     ResponseLogin:
-      type: string
+      type: object
+      properties:
+        token:
+          type: string
+          example: 0a0a0a0a-0a0a-0a0a-0a0a-0a0a0a0a0a0a
+        id:
+          type: number
+          example: 1
       
 # adduser
     RequestAddUser:
@@ -249,10 +256,12 @@ components:
     ResponseAddUser:
       type: object
       properties:
-        message:
+        token:
           type: string
-          description: Mensagem de resposta
-          example: 'usuario adicionado'
+          example: 0a0a0a0a-0a0a-0a0a-0a0a-0a0a0a0a0a0a
+        id:
+          type: number
+          example: 1
           
 # put user
     RequestPutUser:

@@ -11,23 +11,20 @@ export async function createTableUsuarios() {
 // essa função recebe o objeto usuario e vai criar um novo usuario no sql
 export async function insertUser(email, senha, nomeUsuario, token) {
   openDb().then((db) => {
-    db.run('INSERT INTO usuarios (email, senha, nomeUsuario, token) VALUES (?,?,?,?)', [
-      email,
-      senha,
-      nomeUsuario,
-      token,
-    ]);
+    db.run(
+      'INSERT INTO usuarios (email, senha, nomeUsuario, token) VALUES (?,?,?,?)',
+      [email, senha, nomeUsuario, token]
+    );
   });
 }
 
 export async function Login(username, password) {
   return openDb().then((db) => {
     return db
-      .all(`SELECT * FROM usuarios WHERE nomeUsuario = ? OR email=? AND senha = ?`, [
-        username,
-        username,
-        password,
-      ])
+      .all(
+        `SELECT * FROM usuarios WHERE nomeUsuario = ? OR email=? AND senha = ?`,
+        [username, username, password]
+      )
       .then((res) => res);
   });
 }
@@ -58,15 +55,14 @@ export async function allUsers() {
 export async function Token(username, password) {
   return openDb().then((db) => {
     return db
-      .all(`SELECT token FROM usuarios WHERE nomeUsuario = ? OR email=? AND senha
-       = ?`, [
-        username,
-        username,
-        password,
-      ])
+      .all(
+        `SELECT token,id FROM usuarios WHERE nomeUsuario = ? OR email=? AND senha
+       = ?`,
+        [username, username, password]
+      )
       .then((res) => res);
   });
-} 
+}
 
 export async function tokenValid(token) {
   return openDb().then((db) => {
