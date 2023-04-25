@@ -3,7 +3,7 @@ import { openDb } from '../configDB.js';
 export async function createTableTodo() {
   openDb().then((db) => {
     db.exec(
-      'CREATE TABLE IF NOT EXISTS todo (id integer PRIMARY KEY, task varchar(255) DEFAULT NULL,complete INTEGER CHECK (complete IN (0,1)) id_usuarioFK INT NOT NULL, FOREIGN KEY (id_usuarioFK) REFERENCES usuarios (id));'
+      'CREATE TABLE IF NOT EXISTS todo (id integer PRIMARY KEY, task varchar(255) DEFAULT NULL,complete INTEGER CHECK (complete IN (0,1)), id_usuarioFK INT NOT NULL, FOREIGN KEY (id_usuarioFK) REFERENCES usuarios (id));'
     );
   });
 }
