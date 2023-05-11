@@ -14,6 +14,7 @@ import {
   deleteAllTask,
   selectTask,
   allTasks,
+  updateTask
 } from '../controller/tarefas.js';
 import { auth } from './auth.js';
 import { Router } from 'express';
@@ -121,6 +122,13 @@ router.delete('/deletetask/:id', Authentication, async function (req, res) {
   let id = req.params.id;
   deleteTask(id);
   res.json('tarefa deletada de id ' + id);
+});
+
+router.put('/puttask/:id', async function (req, res) {
+  let {complete} = req.body
+  let id = req.params.id;
+  updateTask(complete,id)
+  res.json('tarefa alterada de id ' + id);
 });
 
 router.get('/alltasks', async function (req, res) {
