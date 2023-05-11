@@ -43,6 +43,15 @@ export async function deleteAllTask(id) {
   });
 }
 
+export async function updateTask(complete, id) {
+  openDb().then((db) => {
+    db.run('UPDATE todo SET complete=? WHERE id=?', [
+      complete,
+      id,
+    ]);
+  });
+}
+
 export async function allTasks() {
   return openDb().then((db) => {
     return db.all('SELECT * FROM todo');
